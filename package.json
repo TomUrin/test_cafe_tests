@@ -1,6 +1,7 @@
 {
   "scripts":{
-    "loginTest": "testcafe chrome ./tests/login_test.js"
+    "loginTest": "testcafe chrome ./tests/login_test.js",
+    "searchTest": "testcafe chrome ./tests/search_test.js"
   },
 
   "dependencies": {
