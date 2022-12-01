@@ -1,0 +1,9 @@
+{
+  "scripts":{
+    "loginTest": "testcafe chrome ./tests/login_test.js"
+  },
+
+  "dependencies": {
+    "testcafe": "^2.1.0"
+  }
+}
