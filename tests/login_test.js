@@ -1,5 +1,6 @@
 import { Selector, t } from "testcafe";
 import { ClientFunction } from 'testcafe';
+import { ageVerification, invalidLogin, validLogin, submitButton } from "./functions";
 
 fixture `Test`
     .page `https://www.astuonkojis.lt/prisijungimas`
@@ -9,11 +10,10 @@ fixture `Test`
     
 test("Errors", async t => {
     const error = Selector('.error-message').exists;
-    await t 
-    .click(Selector('#age-verification').find('a').withText('Taip'))
-    .typeText(Selector(email), "11")
-    .typeText(Selector(password), "22")
-    .click(Selector('.submit-button'))
+    await ageVerification()
+    await invalidLogin(email, password)
+    await submitButton()
+    await t
     .expect(error).ok()
 });
 
@@ -21,10 +21,9 @@ test("Errors", async t => {
     const getURL = ClientFunction(() => window.location.href);
 
 test("login", async t => {
-    await t 
-    .click(Selector('#age-verification').find('a').withText('Taip'))
-    .typeText(Selector(email), "urinovic.tomas@gmail.com")
-    .typeText(Selector(password), "testcafe1122")
-    .click(Selector('.submit-button'))
+    await ageVerification()
+    await validLogin(email, password)
+    await submitButton()
+    await t
     .expect(getURL()).eql(URL);
 });
