@@ -5,6 +5,8 @@ export async function ageVerification() {
     await t
     .click(Selector('#age-verification').find('a').withText('Taip'))
 };
+
+// Login_Test
 export async function invalidLogin(email, password) {
     await t 
     .typeText(Selector(email), "11")
@@ -22,6 +24,18 @@ export async function submitButton() {
     .click(Selector('.submit-button'))
 };
 
+//Search_Test
+export async function searchResults() {
+    const kuponas = Selector('.item_hover_wrap_link').nth(0).withText('kuponas').exists;
+    const kuponas1 = Selector('.item_hover_wrap_link').nth(1).withText('kuponas').exists;
+    const kuponas2 = Selector('.item_hover_wrap_link').nth(2).withText('kuponas').exists;
+    await t
+    .expect(kuponas).ok()
+    .expect(kuponas1).ok()
+    .expect(kuponas2).ok()
+};
+
+// Cart_test
 export async function firstItem() {
     await t
     .click(Selector('.hor-menu-level1').withText('GĖRIMAI'))
