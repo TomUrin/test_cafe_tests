@@ -74,8 +74,13 @@ export async function sumCheck() {
     .click(Selector('a').withText('Pašalinti'))
     .click(Selector('.modal-confirm'))
     // Item sum vs. cart sum check
+    const itemString = await Selector('.price').innerText;
+    const item = parseFloat(itemString) / 100;
+    const numItem = Number(item);
     const cartSum2 = await Selector('.cart-summary-row-price').innerText;
     const finalCart2 = parseFloat(cartSum2);
+    await t
+    .expect(finalCart2).eql(numItem)
     await t
     .expect(Number(cartSum)).notEql(Number(finalCart2))
 };
